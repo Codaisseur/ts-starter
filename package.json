@@ -1,0 +1,44 @@
+{
+  "name": "codaisseur-ts-starter",
+  "version": "1.0.0",
+  "description": "Codaisseur's TypeScript Starter Template",
+  "repository": "https://github.com/Codaisseur/ts-starter.git",
+  "author": "Codaisseur <support@codaisseur.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@types/reflect-metadata": "^0.0.5",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.18.1",
+    "cors": "^2.8.4",
+    "debug": "^3.0.1",
+    "express": "^4.15.4",
+    "helmet": "^3.8.1",
+    "morgan": "^1.8.2",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
+    "reflect-metadata": "^0.1.10",
+    "sequelize": "^4.10.0",
+    "sequelize-typescript": "^0.5.0",
+    "ts-node": "^3.3.0",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.11",
+    "@types/body-parser": "^1.16.5",
+    "@types/cors": "^2.8.1",
+    "@types/debug": "^0.0.30",
+    "@types/express": "^4.0.37",
+    "@types/helmet": "^0.0.36",
+    "@types/morgan": "^1.7.32",
+    "@types/pg": "^7.1.2",
+    "@types/sequelize": "^4.0.73",
+    "@types/winston": "^2.3.5",
+    "sequelize-cli": "^3.0.0-3",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2"
+  }
+}

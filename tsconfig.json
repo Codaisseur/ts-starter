@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true,
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "target": "ES2017",
+    "types" : [ "node" ],
+    "typeRoots": [
+      "node_modules/@types",
+      "@typesCustom",
+      "./@types"
+    ],
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "outDir": "dist/",
+    "rootDir": "src/",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": [
+    "src/**/*",
+    "@types/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+  "typeRoots": [
+    "./@types",
+    "@typesCustom",
+    "node_modules/@types"
+  ],
+  "filesGlob": [
+    "./@types/**/*.d.ts"
+  ],
+  "compileOnSave": true
+}
