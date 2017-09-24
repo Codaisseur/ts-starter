@@ -5,6 +5,12 @@ declare module config {
     production: Configuration
   }
 
+  interface Database {
+    development: DatabaseConfiguration
+    test: DatabaseConfiguration
+    production: DatabaseConfiguration
+  }
+
   interface Configuration {
     database: DatabaseConfiguration
     server: ServerConfiguration
@@ -13,7 +19,7 @@ declare module config {
 
   interface DatabaseConfiguration {
     dialect: string
-    connection: string
+    url: string
     modelPaths: string[]
   }
 

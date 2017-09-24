@@ -6,10 +6,12 @@ import App, { Server } from './initializers'
 import { debugStream, winstonStream } from './initializers/logger'
 import { oauth2 } from './middleware'
 import { DefaultRoutes } from './routes'
+import database from './initializers/database'
 
 const config = App.config
 
 const app = Server.init()
+const db = database()
 
 app
   // Help secure Express apps with various HTTP headers.
