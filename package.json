@@ -11,7 +11,11 @@
     "db:create": "node dist/bin/db.js create",
     "db:drop": "node dist/bin/db.js drop",
     "db:sync": "node dist/bin/db.js sync",
-    "db:sync:force": "node dist/bin/db.js sync --force"
+    "db:sync:force": "node dist/bin/db.js sync --force",
+    "db:migration:generate": "node_modules/.bin/sequelize migration:generate --underscored --name"
+  },
+  "engines": {
+    "node": ">=8"
   },
   "dependencies": {
     "@types/reflect-metadata": "^0.0.5",

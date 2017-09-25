@@ -9,7 +9,7 @@ export = <config.Database>{
     url: 'postgresql://localhost:5432/codaisseur-dev',
     dialect: 'postgres',
     modelPaths: [
-      __dirname + '../models'
+      __dirname + '/../models'
     ]
   },
   /**
@@ -22,7 +22,7 @@ export = <config.Database>{
     url: 'postgresql://localhost:5432/codaisseur-dev',
     dialect: 'postgres',
     modelPaths: [
-      __dirname + '../models'
+      __dirname + '/../models'
     ]
   },
   /**
@@ -36,7 +36,7 @@ export = <config.Database>{
     url: process.env.DATABASE_URL,
     dialect: 'postgres',
     modelPaths: [
-      __dirname + '../models'
+      __dirname + '/../models'
     ]
   }
 }
