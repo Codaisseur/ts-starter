@@ -8,12 +8,7 @@ export class HomeController extends AbstractController {
   }
 
   public index(): void {
-    const pkg = require('../../package.json')
-    const props = {
-      name: pkg.name,
-      version: pkg.version,
-      description: pkg.description
-    }
+    const props = this.appInfo()
 
     Promise.any([
       this.respondTo('html', 'json')
@@ -25,5 +20,14 @@ export class HomeController extends AbstractController {
       .catch(() => {
         this.notImplemented()
       })
+  }
+
+  private appInfo(): {} {
+    const pkg = require('../../package.json')
+    return {
+      name: pkg.name,
+      version: pkg.version,
+      description: pkg.description
+    }
   }
 }
