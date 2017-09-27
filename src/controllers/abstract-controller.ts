@@ -7,7 +7,7 @@ type TActionFilter = (options?: any) => express.RequestHandler
 
 interface IActionFilterConfig {
   all?: TActionFilter[]
-  find?: TActionFilter[]
+  index?: TActionFilter[]
   get?: TActionFilter[]
   create?: TActionFilter[]
   update?: TActionFilter[]
@@ -16,8 +16,8 @@ interface IActionFilterConfig {
 }
 
 interface IAbstractController {
-  find?: express.RequestHandler
-  get?: express.RequestHandler
+  index?: express.RequestHandler
+  show?: express.RequestHandler
   create?: express.RequestHandler
   update?: express.RequestHandler
   destroy?: express.RequestHandler
@@ -42,12 +42,12 @@ export class AbstractController implements IAbstractController {
   protected static configureRoutes(): void {
     /*
     this.router
-      .get('/', (req, res) => new MyController(req, res).find)
-      .post('/', (req, res) => new MyController(req, res).create)
+      .get('/', (req, res) => new MyController(req, res).index())
+      .post('/', (req, res) => new MyController(req, res).create())
       ...
     */
     this.router
-      .get('*', (req, res) => { return new AbstractController(req, res).notImplemented() })
+      .get('*', (req, res) => { return new AbstractController(req, res).notFound() })
   }
 
   public constructor(req: express.Request, res: express.Response) {
@@ -62,8 +62,8 @@ export class AbstractController implements IAbstractController {
   /*
    * Abstract methods to be overridden in child controllers
    */
-  public find(): void { this.notFound() }
-  public get(): void { this.notFound() }
+  public index(): void { this.notFound() }
+  public show(): void { this.notFound() }
   public create(): void { this.notFound() }
   public update(): void { this.notFound() }
   public destroy(): void { this.notFound() }

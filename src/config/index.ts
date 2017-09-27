@@ -11,7 +11,7 @@ export = <config.Environments>{
     database: database.development,
     server: {
       host: 'localhost',
-      port: process.env.PORT || '4000',
+      port: process.env.PORT || '3000',
       graphiql: true
     },
     logger: {
@@ -31,7 +31,7 @@ export = <config.Environments>{
     database: database.test,
     server: {
       host: 'localhost',
-      port: process.env.PORT || '4000',
+      port: process.env.PORT || '3000',
       graphiql: false
     },
     logger: {
