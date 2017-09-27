@@ -1,13 +1,21 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
+import { RootState } from '../reducers'
 
 interface AppProps {
   name: string
-  version: number
+  version: string
   description: string
 }
 
-export default class App extends React.PureComponent<AppProps> {
-  render(): JSX.Element {
+const mapStateToProps = ({ info }: RootState['info']): AppProps => ({
+  name: info.name,
+  version: info.version,
+  description: info.description
+})
+
+export class App extends React.PureComponent<AppProps> {
+  render(): JSX.Element | false | null {
     const { name, version, description } = this.props
 
     return(
@@ -23,3 +31,5 @@ export default class App extends React.PureComponent<AppProps> {
     )
   }
 }
+
+export default connect(mapStateToProps)(App)
