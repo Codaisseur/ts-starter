@@ -6,14 +6,20 @@ import App, { Server } from './initializers'
 import { debugStream, winstonStream } from './initializers/logger'
 import { oauth2 } from './middleware'
 import { DefaultRoutes } from './routes'
-import database from './initializers/database'
+// import database from './initializers/database'
+import viewEngine from './initializers/views'
 
 const config = App.config
 
 const app = Server.init()
-const db = database()
+// const db = database()
 
 app
+  // Set up the React view engine
+  .engine('js', viewEngine)
+  .set('view engine', 'js')
+  .set('views', __dirname + '/views')
+
   // Help secure Express apps with various HTTP headers.
   // See: https://helmetjs.github.io/
   .use(helmet())
