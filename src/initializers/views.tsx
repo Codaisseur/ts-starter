@@ -33,7 +33,7 @@ const renderFullPage = (html: string, preloadedState: RootState): string => {
           // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
         </script>
-        <script src="${jsBundleURL}"></script>
+        <script${Environment.isProduction() ? '' : ' crossorigin'} src="${jsBundleURL}"></script>
       </body>
     </html>
     `
