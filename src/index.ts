@@ -2,18 +2,27 @@ import * as helmet from 'helmet'
 import * as morgan from 'morgan'
 import * as cors from 'cors'
 import * as bodyParser from 'body-parser'
+import * as serveStatic from 'serve-static'
+import * as favicon from 'serve-favicon'
 import App, { Server } from './initializers'
 import { debugStream, winstonStream } from './initializers/logger'
 import { oauth2 } from './middleware'
 import { DefaultRoutes } from './routes'
-import database from './initializers/database'
+// import database from './initializers/database'
+import viewEngine from './initializers/views'
 
 const config = App.config
+const publicPath = __dirname + '/../public'
 
 const app = Server.init()
-const db = database()
+// const db = database()
 
 app
+  // Set up the React view engine
+  .engine('js', viewEngine)
+  .set('view engine', 'js')
+  .set('views', __dirname + '/views')
+
   // Help secure Express apps with various HTTP headers.
   // See: https://helmetjs.github.io/
   .use(helmet())
@@ -29,6 +38,10 @@ app
   // Set up logging
   .use(morgan('dev', debugStream))
   .use(morgan('combined', winstonStream))
+
+  // Set up serving static files
+  .use(favicon(publicPath + '/favicon.ico'))
+  .use('/public', serveStatic(publicPath))
 
   // Set up body-parser
   .use(bodyParser.json())

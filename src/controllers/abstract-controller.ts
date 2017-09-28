@@ -78,8 +78,14 @@ export class AbstractController implements IAbstractController {
    */
   protected respondTo(...formats: string[]): Promise<string | boolean> {
     return new Promise((resolve, reject) => {
-      const bestMatch = this.req.accepts(...formats)
-      return (typeof bestMatch === 'string') ? resolve(bestMatch) : reject(false)
+      const bestMatch = formats.includes(this.req.params.format) ? this.req.params.format : this.req.accepts(...formats)
+      if (typeof bestMatch === 'string') {
+        this.logger.debug('Resolved request format "%s"', bestMatch)
+        resolve(bestMatch)
+      } else {
+        this.logger.debug('No supported request format found in "%s"', formats.join('", "'))
+        reject(false)
+      }
     })
   }
 
@@ -89,14 +95,11 @@ export class AbstractController implements IAbstractController {
     this.res.status(status)
 
     Promise.any([
-      this.respondTo('html'),
-      this.respondTo('json')
+      this.respondTo('html', 'json')
     ])
-      .then(() => {
-        this.respondTo('html')
-          .then(() => this.htmlErrorPage(404)),
-        this.respondTo('json')
-          .then(() => this.res.json({ message }))
+      .then((format) => {
+        if (format === 'html') { return this.htmlErrorPage(404) }
+        if (format === 'json') { return this.res.json({ message }) }
       })
       .catch(() => {
         this.notImplemented()

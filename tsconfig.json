@@ -10,6 +10,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "ES2017",
+    "jsx": "react",
     "types" : [ "node" ],
     "typeRoots": [
       "node_modules/@types",
