@@ -21,9 +21,7 @@ export class App extends React.PureComponent<AppProps> {
     return(
       <main>
         <h1>{name} - v{version}</h1>
-
         <p>{description}</p>
-
         <p>
           <a href='/index.json'>JSON format</a>
         </p>

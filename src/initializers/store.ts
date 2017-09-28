@@ -2,13 +2,25 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import ReduxThunk from 'redux-thunk'
 import { rootReducer, RootState } from '../reducers'
 
+declare global {
+  export interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
+    __PRELOADED_STATE__: RootState
+  }
+}
+
+const composeEnhancers = (
+  process.env.NODE_ENV === 'development' &&
+  window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+) || compose;
+
 export const configureStore = (initialState?: RootState) => {
   // configure middlewares
   const middlewares = [
     ReduxThunk
   ];
   // compose enhancers
-  const enhancer = compose(
+  const enhancer = composeEnhancers(
     applyMiddleware(...middlewares)
   );
   // create store
