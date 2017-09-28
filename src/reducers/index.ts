@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import { reducer as counter, State as CounterState } from './counter'
-import { reducer as info, State as InfoState } from './info'
+import { reducer as counterReducer, State as CounterState } from './counter'
+import { reducer as infoReducer, State as InfoState } from './info'
 
 interface StoreEnhancerState { }
 
@@ -11,6 +11,10 @@ export interface RootState extends StoreEnhancerState {
 }
 
 export const rootReducer = combineReducers<RootState>({
-  counter,
-  info
+  counter: counterReducer,
+  info: infoReducer
 })
+
+export const sanitizeState = ({ counter, info }: RootState): RootState => { // tslint-ignore-line no-shadowed-variable
+  return { counter, info }
+}
