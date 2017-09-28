@@ -12,7 +12,7 @@ export const reducer: Reducer<State['counter']> = (state = 0, { type }: RootActi
       return state + 1
 
     case DECREMENT_COUNTER:
-      return state + 1
+      return state - 1
 
     default:
       return state

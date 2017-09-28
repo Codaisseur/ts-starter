@@ -10,6 +10,8 @@ declare global {
   }
 }
 
+const devTools = window.devToolsExtension ? window.devToolsExtension() : (f: RootState): RootState => f
+
 export const configureStore = (initialState?: RootState) => {
   // configure middlewares
   const middlewares = [
@@ -17,7 +19,8 @@ export const configureStore = (initialState?: RootState) => {
   ];
   // compose enhancers
   const enhancer = compose(
-    applyMiddleware(...middlewares)
+    applyMiddleware(...middlewares),
+    devTools
   );
   // create store
   return createStore<RootState>(

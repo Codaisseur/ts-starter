@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { RootState } from '../reducers'
+import Counter from './components/counter'
 
 interface AppProps {
   name: string
@@ -22,6 +23,7 @@ export class App extends React.PureComponent<AppProps> {
       <main>
         <h1>{name} - v{version}</h1>
         <p>{description}</p>
+        <Counter />
         <p>
           <a href='/index.json'>JSON format</a>
         </p>
